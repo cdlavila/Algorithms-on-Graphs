@@ -38,7 +38,6 @@ void dfs(graph &g) {
     // for each vertex from graph
     unsigned int length = g.size();
     for (unsigned int i = 0; i < length; i++) {
-        order = 1;
         if (!visited(g[i])) {
             explore(g[i], g);
         }
