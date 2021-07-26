@@ -57,5 +57,6 @@ int main() {
     g[x - 1].second.push_back(y - 1);
   }
   dfs(g);
+
   std::cout << isCyclic;
 }
