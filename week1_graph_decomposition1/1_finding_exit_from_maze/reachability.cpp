@@ -5,12 +5,13 @@ using std::vector;
 using std::pair;
 
 int reach(vector<pair<bool, vector<unsigned int>>> &adj, int x, int y) {
-  //write your code here
     int answer = 0;
+    // Visited
     adj[x].first = true;
     unsigned int limit = adj[x].second.size();
     for (size_t i = 0; i < limit; i++) {
         int w = adj[x].second[i];
+        //If it hasn't already been visited
         if (!adj[w].first) {
             answer = reach(adj, w, y);
         }
