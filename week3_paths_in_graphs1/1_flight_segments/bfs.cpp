@@ -56,4 +56,10 @@ int main() {
   s--, t--;
   pair<int, vector<int>> distanceAndPrevious = distance(adj, s, t);
   cout << distanceAndPrevious.first;
+  // This is not part of the assignment
+  vector<int> path = reconstructPath(s, t, distanceAndPrevious.second);
+  cout << "\nPath: ";
+  for (int i: path) {
+      cout << i + 1 << " ";
+  }
 }
