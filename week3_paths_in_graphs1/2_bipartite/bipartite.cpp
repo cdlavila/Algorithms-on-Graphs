@@ -41,7 +41,7 @@ int bipartite(vector<vector<int> > &adj) {
             while (!neighbors.empty()) {
                 int u = neighbors.front();
                 neighbors.pop();
-                int painted2= painted;
+                int paintedUntilHere = painted;
                 for (int v : adj[u]) {
                     if (distances[v] == infinite) {
                         neighbors.push(v);
@@ -51,11 +51,11 @@ int bipartite(vector<vector<int> > &adj) {
                         painted++;
                     } else {
                         if (v != previous[u]) // If it's not visiting the father node
-                            if (colors[v] == colors[u]) //
+                            if (colors[v] == colors[u]) // If this neighbor that isn't the father has the same color (It cannot be painted with only 2 colors)
                                 return 0;
                     }
                 }
-                if (painted != painted2)
+                if (painted > paintedUntilHere)
                     color = swapColor(color);
             }
         }
