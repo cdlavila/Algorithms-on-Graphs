@@ -8,7 +8,7 @@ using namespace std;
 // The number of vertices (n) is between 2 and 10^5, that means the largest route between two vertices u and v cannot be greater than 10^5
 int infinite = 10*10*10*10*10;
 
-string changeColor(string color) {
+string swapColor(string color) {
     if (color == "white")
         return "black";
 
@@ -24,31 +24,39 @@ int bipartite(vector<vector<int> > &adj) {
     vector<int> previous (adj.size(), -1);
     vector<string> colors (adj.size(), "none");
     string color = "white";
+    int painted = 0;
 
     for (int i = 0; i < adj.size(); i++) {
+        if (painted == adj.size())
+            break;
+
         if (colors[i] == "none") {
             distances[i] = 0;
             previous[i] = 0;
             colors[i] = color;
-            color = changeColor(color);
+            painted++;
+            color = swapColor(color);
             queue<int> neighbors;
             neighbors.push(i);
             while (!neighbors.empty()) {
                 int u = neighbors.front();
                 neighbors.pop();
+                int painted2= painted;
                 for (int v : adj[u]) {
                     if (distances[v] == infinite) {
                         neighbors.push(v);
                         distances[v] = distances[u] + 1;
                         previous[v] = u;
                         colors[v] = color;
+                        painted++;
                     } else {
-                        if (v != previous[u])
-                            if (colors[v] != color)
+                        if (v != previous[u]) // If it's not visiting the father node
+                            if (colors[v] == colors[u]) //
                                 return 0;
                     }
                 }
-                color = changeColor(color);
+                if (painted != painted2)
+                    color = swapColor(color);
             }
         }
     }
