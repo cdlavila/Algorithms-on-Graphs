@@ -4,8 +4,8 @@
 
 using namespace std;
 
-// The greater long long int number divided by 2
-long long int inf = LLONG_MAX / 2;
+// The greater long long int number divided by 2 (LLONG_MAX / 2)
+long long int inf = 4611686018427387903;
 // Priority queue where smallest numbers have higher priority
 typedef priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> my_priority_queue;
 
