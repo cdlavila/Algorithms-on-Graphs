@@ -6,10 +6,11 @@ using namespace std;
 
 // The greater long long int number divided by 2 (LLONG_MAX / 2)
 long long int inf = 4611686018427387903;
+
 // Priority queue where smallest numbers have higher priority
 typedef priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> my_priority_queue;
 
-// Change priority
+// Change priority function
 my_priority_queue changePriority(my_priority_queue& H, int v, long long distV) {
   my_priority_queue newH;
   while (!H.empty()) {
@@ -30,20 +31,15 @@ long long distance(vector<vector<int> > &adj, vector<vector<int> > &cost, int s,
   vector<int> prev(adj.size(), -1); // -1 represents that this vertex hasn't a previous node
   dist[s] = 0;
   my_priority_queue H;
-  //
+  /*
   for (int i = 0; i < adj.size(); i++) {
     pair<long long, int> d = make_pair(dist[i], i);
     H.push(d);
   }
-  /*
-  H = changePriority(H, 3, 2);
+  */
 
-  while (!H.empty()) {
-    cout << H.top().first <<" " << H.top().second << "\n";
-    H.pop();
-  }
-  return 0;
-   */
+  H.push(make_pair(dist[s], s));
+
   while(!H.empty()) {
     pair<long long, int> u = H.top();
     H.pop();
@@ -52,7 +48,8 @@ long long distance(vector<vector<int> > &adj, vector<vector<int> > &cost, int s,
       if (dist[v] > dist[u.second] + cost[u.second][i]) {
         dist[v] = dist[u.second] + cost[u.second][i];
         prev[v] = u.second;
-        H = changePriority(H, v, dist[v]);
+        //H = changePriority(H, v, dist[v]);
+        H.push(make_pair(dist[v], v));
       }
     }
   }
