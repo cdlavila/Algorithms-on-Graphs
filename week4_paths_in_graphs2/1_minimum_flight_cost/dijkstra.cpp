@@ -23,6 +23,7 @@ long long distance(vector<vector<int> > &adj, vector<vector<int> > &cost, int s,
     H.pop();
     for (int i = 0; i < adj[u.second].size(); i++) {
       int v = adj[u.second][i];
+      // Relax (u, v)
       if (dist[v] > dist[u.second] + cost[u.second][i]) {
         dist[v] = dist[u.second] + cost[u.second][i];
         prev[v] = u.second;
