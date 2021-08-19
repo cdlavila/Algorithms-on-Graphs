@@ -10,7 +10,8 @@ int bellmanFord(vector<vector<int> > &adj, vector<vector<int> > &cost) {
   vector<int> dist(adj.size(), inf);
   vector<int> prev(adj.size(), -1); // -1 represents that this vertex hasn't a previous node
   dist[0] = 0;
-  // Repeat |V| + 1 times or |V| times (only to find a negative cycle)
+  // Repeat |V| - 1 times (Common Bellman-Ford-Algorithm)
+  // Repeat |V| times (Only to find a negative cycle)
   int i = 1;
   unsigned int V = adj.size();
   while (i <= V) {
