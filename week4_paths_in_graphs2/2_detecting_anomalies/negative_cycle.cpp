@@ -6,12 +6,13 @@ using namespace std;
 // The greater possible path from a node u to another node v (10^3 * 10^3) + 1
 int inf = 1000001;
 
-int bellmanFord(vector<vector<int> > &adj, vector<vector<int> > &cost, unsigned int V) {
+int bellmanFord(vector<vector<int> > &adj, vector<vector<int> > &cost) {
   vector<int> dist(adj.size(), inf);
   vector<int> prev(adj.size(), -1); // -1 represents that this vertex hasn't a previous node
   dist[0] = 0;
   // Repeat |V| + 1 times or |V| times (only to find a negative cycle)
   int i = 1;
+  unsigned int V = adj.size();
   while (i <= V) {
     // For all (u, v) ∈ E
     for (int j = 0; j < adj.size(); j++) {
@@ -33,7 +34,7 @@ int bellmanFord(vector<vector<int> > &adj, vector<vector<int> > &cost, unsigned 
 }
 
 int negative_cycle(vector<vector<int> > &adj, vector<vector<int> > &cost) {
-  return bellmanFord(adj, cost, adj.size());
+  return bellmanFord(adj, cost);
 }
 
 int main() {
