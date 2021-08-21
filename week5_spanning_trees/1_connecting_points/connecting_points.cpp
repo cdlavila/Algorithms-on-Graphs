@@ -11,7 +11,8 @@ using namespace std;
 typedef priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> my_priority_queue;
 
 // The greater int number
-int inf = 2147483647;
+# define inf 0x3f3f3f3f
+//int inf = 2147483647;
 
 double prim(vector<vector<int>> &adj, vector<vector<double>> &weight) {
   vector<double> cost(adj.size(), inf);
