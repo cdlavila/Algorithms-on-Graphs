@@ -19,7 +19,6 @@ double prim(vector<vector<int>> &adj, vector<vector<double>> &weight) {
   vector<bool> MST(adj.size(), false);
   int u0 = 0;
   cost[u0] = 0;
-  MST[u0] = true;
 
   my_priority_queue Q;
   Q.push(make_pair(cost[u0], u0));
@@ -27,7 +26,10 @@ double prim(vector<vector<int>> &adj, vector<vector<double>> &weight) {
   while(!Q.empty()) {
     int v = Q.top().second;
     Q.pop();
+
+    if (MST[v]) continue;
     MST[v] = true;
+
     for (int i = 0; i < adj[v].size(); i++) {
       int z = adj[v][i];
       if (!MST[z] && cost[z] > weight[v][i]) {
@@ -79,6 +81,5 @@ int main() {
   for (size_t i = 0; i < n; i++) {
     cin >> x[i] >> y[i];
   }
-  cout << fixed;
-  cout << setprecision(10) << minimum_distance(x, y) << "\n";
+  cout << fixed << setprecision(10) << minimum_distance(x, y) << "\n";
 }
