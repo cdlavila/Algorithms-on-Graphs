@@ -138,19 +138,3 @@ int main() {
   }
   cout << fixed << setprecision(10) << minimum_distance(x, y) << "\n";
 }
-
-/*
-int main() {
-  int V, E;
-  cin >> V >> E;
-  vector<edge> edges(E);
-  for (int i = 0; i < E; i++) {
-    int u, v;
-    double w;
-    cin >> u >> v >> w;
-    edge newEdge(u, v, w);
-    edges[i] = newEdge;
-  }
-  cout << kruskal(edges);
-}
- */
