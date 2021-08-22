@@ -63,7 +63,7 @@ public:
     }
 };
 
-// Undirected edge implementation
+// Undirected weighted edge implementation
 class edge{
 public:
     int u, v;
@@ -98,8 +98,11 @@ pair<vector<edge>, double> kruskal(vector<edge> &edges) {
   for(edge e: edges) {
     int u = e.u;
     int v = e.v;
+    // if Find(u) ̸= Find(v):
     if (ds.find(u) != ds.find(v)) {
+      // add {u, v} to X
       X.push_back(e);
+      // Union(u, v)
       ds.Union(u, v);
       total_cost += e.weight;
     }
@@ -107,13 +110,14 @@ pair<vector<edge>, double> kruskal(vector<edge> &edges) {
   return make_pair(X, total_cost);
 }
 
-// Distance between two point function
+// Distance between two points function
 double distance_between_two_points(int x1, int y1, int x2, int y2) {
   return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
 
+// Minimum distance (problem solution)
 double minimum_distance(vector<int> x, vector<int> y) {
-  // Constructing the undirected graph
+  // Constructing the edges list
   unsigned int v = x.size();
   vector<edge> edges(v);
   for (int i = 0; i < v; i++) {
@@ -125,6 +129,7 @@ double minimum_distance(vector<int> x, vector<int> y) {
       }
     }
   }
+  // Running Kruskal's algorithm in our graph
   pair<vector<edge>, double> result = kruskal(edges);
   return result.second;
 }
